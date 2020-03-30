@@ -1,4 +1,3 @@
-
 def get_hamiltonian_coordinate(board_size, coordinate):
     x, y = coordinate[0], coordinate[1]
 
@@ -23,3 +22,6 @@ def get_hamiltonian_coordinate(board_size, coordinate):
             x -=1
         else:
             y -= 1
+    return [x, y]
+
+print(get_hamiltonian_coordinate(4, [0,0]))
