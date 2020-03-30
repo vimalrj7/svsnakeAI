@@ -1,5 +1,6 @@
 from snek import *
 from time import sleep
+from messing_around import *
 
 if __name__ == "__main__":
 	#ptr to board
@@ -17,6 +18,11 @@ if __name__ == "__main__":
 		
 		#I just realized this is redundantly written
 		#Oh well...
+
+		new = get_hamiltonian_coordinate(BOARD_SIZE, [x_coord, y_coord])
+		axis, direction = convert_to_move([x_coord, y_coord], new)
+
+		'''
 		go_x = (axis == AXIS_Y and direction == 1 and y_coord == (BOARD_SIZE - 1)) or \
 			   (axis == AXIS_Y and direction == -1 and y_coord == 0)
 		
@@ -29,7 +35,8 @@ if __name__ == "__main__":
 		elif go_y:
 			axis = AXIS_Y
 			direction = DOWN if y_coord < BOARD_SIZE // 2 else UP
-			
+		'''
+
 		play_on = advance_frame(axis, direction, board)
 		show_board(board)
 		sleep(0.65)

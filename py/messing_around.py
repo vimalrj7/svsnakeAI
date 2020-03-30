@@ -1,3 +1,5 @@
+from snek import *
+
 def get_hamiltonian_coordinate(board_size, coordinate):
     x, y = coordinate[0], coordinate[1]
 
@@ -26,5 +28,28 @@ def get_hamiltonian_coordinate(board_size, coordinate):
 
     return [x, y]
 
+def convert_to_move(current, new):
+    difference = [0, 0]
+    difference[0], difference[1] = new[0] - current[0], new[1] - current[1]
 
-print(get_hamiltonian_coordinate(4, [0,0]))
+    axis, direction = 0, 0
+
+    if difference == [0, 1]:
+        axis = AXIS_Y
+        direction = DOWN
+
+    elif difference == [0, -1]:
+        axis = AXIS_Y
+        direction = UP
+    
+    elif difference == [1, 0]:
+        axis = AXIS_X
+        direction = RIGHT
+    
+    else:
+        axis = AXIS_X
+        direction = LEFT
+
+    return axis, direction
+
+    
