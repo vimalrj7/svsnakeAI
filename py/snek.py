@@ -54,7 +54,7 @@ class GameBoard(Structure):
 	def __repr__(self):
 		#don't need this, print(board[0]) does work though
 		#left as a reference for how to access GameBoard attributes
-		s = 'SSSSSSSSSSSSSSSS'
+		s = ''
 		for i in range(0, BOARD_SIZE):
 			for j in range(0, BOARD_SIZE):
 				if self.occupancy[i][j] == 1:
