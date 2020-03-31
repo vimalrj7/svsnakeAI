@@ -22,18 +22,27 @@ if __name__ == "__main__":
 		head = [x_head, y_head]
 		tail = [x_head, y_head]
 
+		#print("SNAKE LENGTH:", board[0].cell_value[1][1])
+		food = [0,0]
 		for i in range(0, BOARD_SIZE):
 			for j in range(0, BOARD_SIZE):
-				if self.cell_value[i][j] != 0:
-					food = [i, j]
-				else:
-					food = 0
+				if board[0].cell_value[i][j] != 0:
+					print("FOOD FOUND!")
+					food[1] = i
+					food[0] = j
+					print(food)
 
-		if food == 0:
-			get_hamiltonian_coordinate(BOARD_SIZE, head):
+		print("FOOD at:", food)
+
+		if food == [0,0]:
+			ham_move = get_hamiltonian_coordinate(BOARD_SIZE, head)
+			axis, direction = convert_to_move(head, ham_move)
+
 		else:
-			moves = shortest_path(head, food)
-			next_move = choose_move(head, tail, food, moves, BOARD_SIZE):
+			moves = short_moves(head, food)
+			print("POSSIBLE MOVES:", moves)
+			next_move = choose_move(head, tail, food, moves, BOARD_SIZE)
+			print("NEXT MOVE:", next_move)
 			axis, direction = convert_to_move(head, next_move)
 
 		'''

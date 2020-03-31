@@ -83,12 +83,35 @@ def shortest_path(coordinate, food_coordinate):
             
     return moves
 
+def short_moves(head_coords, food_coords):
+    x, y = 0, 0
+    if food_coords[0] > head_coords[0]:
+        x = head_coords[0] + 1
+    elif food_coords[0] > head_coords[0]:
+        x = head_coords[0] - 1
+    else:
+        x = head_coords[0]
+
+    move1 = [x, head_coords[1]]
+
+    if food_coords[1] > head_coords[1]:
+        y = head_coords[1] + 1
+    elif food_coords[1] < head_coords[1]:
+        y = head_coords[1] - 1
+    else:
+        y = head_coords[1]
+
+    move2 = [head_coords[0], y]
+
+    return [move1, move2]
+    
+
 def choose_move(head_coords, tail_coords, food_coords, short_moves, board_size):
     head_val = get_hamiltonian_number(board_size, head_coords)
     tail_val = get_hamiltonian_number(board_size, tail_coords)
     food_val = get_hamiltonian_number(board_size, food_coords)
 
-    ham_move = get_hamiltonian_number(board_size, head_coords)
+    ham_move = get_hamiltonian_coordinate(board_size, head_coords)
 
 
     for move in short_moves:
@@ -96,25 +119,21 @@ def choose_move(head_coords, tail_coords, food_coords, short_moves, board_size):
             continue
         move_val = get_hamiltonian_number(board_size, move)
         if head_val < tail_val:
-            if move_val < tail_val:
+            if move_val < tail_val and move_val < food_val:
                 return move
         if head_val > tail_val:
             if move_val > head_val and move_val < ((board_size**2)-1):
                 move_val -= ((board_size**2)-1)
-                if move_val < tail_val:
+                if move_val < tail_val and move_val < food_val:
                     return move
             elif move_val > -1 and move_val < tail_val:
-                return move
+                if move_val < tail_val and move_val < food_val:
+                    return move
 
     print("Can't take shortcut, following hamiltonian")
 
     return ham_move
 
-
-print(shortest_path([1,2], [3,0]))
-
-move = choose_move([1,2], [1,0], [3,0], [[1,1], [2,2]], 4)
-print(move)
 
             
     
