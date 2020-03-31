@@ -22,21 +22,19 @@ if __name__ == "__main__":
 		head = [x_head, y_head]
 		tail = [x_head, y_head]
 
-		s = ''
 		for i in range(0, BOARD_SIZE):
 			for j in range(0, BOARD_SIZE):
 				if self.cell_value[i][j] != 0:
 					food = [i, j]
 				else:
-					s += '+'
-			s += '\n'
-		return s
-		
-		#I just realized this is redundantly written
-		#Oh well...
+					food = 0
 
-		choose_move()
-		axis, direction = convert_to_move([x_coord, y_coord], new)
+		if food == 0:
+			get_hamiltonian_coordinate(BOARD_SIZE, head):
+		else:
+			moves = shortest_path(head, food)
+			next_move = choose_move(head, tail, food, moves, BOARD_SIZE):
+			axis, direction = convert_to_move(head, next_move)
 
 		'''
 		go_x = (axis == AXIS_Y and direction == 1 and y_coord == (BOARD_SIZE - 1)) or \
