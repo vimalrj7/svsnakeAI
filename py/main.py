@@ -13,13 +13,29 @@ if __name__ == "__main__":
 			
 	while (play_on):
 		#indexing at 0 dereferences the pointer
-		x_coord, y_coord = board[0].snek[0].head[0].coord[x], \
+		x_head, y_head = board[0].snek[0].head[0].coord[x], \
 						   board[0].snek[0].head[0].coord[y]
+
+		x_tail, y_tail = board[0].snek[0].tail[0].coord[x], \
+						   board[0].snek[0].tail[0].coord[y]
+
+		head = [x_head, y_head]
+		tail = [x_head, y_head]
+
+		s = ''
+		for i in range(0, BOARD_SIZE):
+			for j in range(0, BOARD_SIZE):
+				if self.cell_value[i][j] != 0:
+					food = [i, j]
+				else:
+					s += '+'
+			s += '\n'
+		return s
 		
 		#I just realized this is redundantly written
 		#Oh well...
 
-		new = get_hamiltonian_coordinate(BOARD_SIZE, [x_coord, y_coord])
+		choose_move()
 		axis, direction = convert_to_move([x_coord, y_coord], new)
 
 		'''
