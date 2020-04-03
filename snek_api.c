@@ -182,7 +182,7 @@ int advance_frame(int axis, int direction, GameBoard *gameBoard){
 
 void show_board(GameBoard* gameBoard) {
 	fprintf(stdout, "\033[2J"); // clear terminal ANSI code
-	fprintf(stdout, "\033[0;0H"); // reset cursor position
+	fprintf(stdout, "\033[0;0H\n"); // reset cursor position
 	
 	char blank = 	43;
 	char snek = 	83;
