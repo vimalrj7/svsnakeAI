@@ -55,21 +55,21 @@ def number_to_coordinate(board_size, number):
         coordinate = get_hamiltonian_coordinate(board_size, coordinate)
     return coordinate
 
-def get_converse_hamiltonian_coordinate(board_size, coordinate):
+def get_reverse_hamiltonian_coordinate(board_size, coordinate):
     ham_num = get_hamiltonian_number(board_size, coordinate)
-    converse = 0
+    reverse = 0
     
     if ham_num == 1:
-        converse = board_size**2 - 1
+        reverse = board_size**2 - 1
 
     elif ham_num == 0:
-        converse = board_size**2 - 2
+        reverse = board_size**2 - 2
 
     else:
-        converse = ham_num - 2
+        reverse = ham_num - 2
     
-    converse_coordinate = number_to_coordinate(board_size, converse)
-    return converse_coordinate
+    reverse_coordinate = number_to_coordinate(board_size, reverse)
+    return reverse_coordinate
 
 def convert_to_move(current, new):
     difference = [0, 0]
@@ -252,7 +252,7 @@ def choose_move(head_coords, tail_coords, food_coords, board_size, board):
     return ham_move
 '''
 
-print(get_hamiltonian_number(10, [8, 1]))
+#print(get_hamiltonian_number(10, [8, 1]))
     
 
     
