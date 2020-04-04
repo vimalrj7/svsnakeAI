@@ -184,7 +184,7 @@ def choose_move(head_coords, tail_coords, food_coords, board_size, board):
         print("Distance to food:", distanceto_food)
         distanceto_move = get_hamiltonian_distance(head_val, move_number, board_size)
         print("Distance to move:", distanceto_move)
-        if distanceto_move < distanceto_tail or distanceto_move <= distanceto_food:
+        if distanceto_move < distanceto_tail and distanceto_move <= distanceto_food:
             print("Taking shortcut!")
             return move
     
