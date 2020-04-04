@@ -1,6 +1,8 @@
 from snek import *
 from math import *
 
+reverse = 0
+
 def get_food_coordinates(board_size, board):
     food = [-1,-1]
     for i in range(0, board_size):
@@ -118,26 +120,27 @@ def shortest_path(coordinate, food_coordinate):
 
 def short_moves(head_coords, food_coords, board):
     x, y = head_coords[0], head_coords[1]
+    print("X:",x,"Y:",head_coords[1])
+    move_list = []
     
     if food_coords[0] > x:
-        x += 1
+        move_list.append([x+1, y])
     elif food_coords[0] < x:
-        x -= 1
-
-    move1 = [x, head_coords[1]]
+        move_list.append([x-1, y])
+        
+    #move1 = [x, head_coords[1]]
 
     if food_coords[1] > y:
-        y += 1
+        move_list.append([x, y+1])
     elif food_coords[1] < y:
-        y -= 1
+        move_list.append([x, y-1])
 
-    move2 = [head_coords[0], y]
+    #move2 = [head_coords[0], y]
 
-    moves = [move1, move2]
-    print("POSSIBLE MOVES:", moves)
+    print("POSSIBLE MOVES:", move_list)
     clean_moves = []
 
-    for move in moves:
+    for move in move_list:
         x = move[0]
         y = move[1]
 
@@ -148,9 +151,50 @@ def short_moves(head_coords, food_coords, board):
             
 
     return clean_moves
+
+def get_hamiltonian_distance(head, item, board_size):
+    if head <= item:
+        return item - head
+    elif head > item:
+        return (board_size**2 - (head - item))
+
+def choose_move(head_coords, tail_coords, food_coords, board_size, board):
+    head_val = get_hamiltonian_number(board_size, head_coords)
+    tail_val = get_hamiltonian_number(board_size, tail_coords)
+
+    ham_move = get_hamiltonian_coordinate(board_size, head_coords)
+
+    print("Head at:", head_val)
+    print("Tail at:", tail_val)
     
+    if food_coords != [-1, -1]:
+        food_val = get_hamiltonian_number(board_size, food_coords)
+    else:
+        print("No food, going ham!")
+        return ham_move
+
+    moves = short_moves(head_coords, food_coords, board)
+    
+    distanceto_tail = get_hamiltonian_distance(head_val, tail_val, board_size) - 1
+    distanceto_food = get_hamiltonian_distance(head_val, food_val, board_size)
+
+    for move in moves:
+        move_number = get_hamiltonian_number(board_size, move)
+        print("Distance to tail:", distanceto_tail)
+        print("Distance to food:", distanceto_food)
+        distanceto_move = get_hamiltonian_distance(head_val, move_number, board_size)
+        print("Distance to move:", distanceto_move)
+        if distanceto_move < distanceto_tail or distanceto_move <= distanceto_food:
+            print("Taking shortcut!")
+            return move
+    
+    print("Can't take shortcut, going ham!")
+    return ham_move
+    
+''' 
 def choose_move(head_coords, tail_coords, food_coords, board_size, board):
 
+    #gets the hamiltonian numbers for the head and food coordinates
     head_val = get_hamiltonian_number(board_size, head_coords)
     tail_val = get_hamiltonian_number(board_size, tail_coords)
 
@@ -172,10 +216,9 @@ def choose_move(head_coords, tail_coords, food_coords, board_size, board):
     moves = short_moves(head_coords, food_coords, board)
     
     for move in moves:
-
+        #if the move generated is equal to the ham move, keep checking
         if move == ham_move:
             continue
-        
         move_val = get_hamiltonian_number(board_size, move)
         if head_val == tail_val:
             print("Taking shorcut.")
@@ -207,9 +250,9 @@ def choose_move(head_coords, tail_coords, food_coords, board_size, board):
     print("No conditions met.")
 
     return ham_move
+'''
 
-
-print(get_hamiltonian_number(10, [9, 9]))
+print(get_hamiltonian_number(10, [8, 1]))
     
 
     
