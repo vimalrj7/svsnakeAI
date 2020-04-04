@@ -208,7 +208,7 @@ def choose_move(head_coords, tail_coords, food_coords, board_size, board):
         #if it's not valid, it takes the reverse hamiltonian
         else:
             print("No food, going reverse ham!")
-            reverse = get_converse_hamiltonian_coordinate(board_size, ham_move)
+            reverse = get_reverse_hamiltonian_coordinate(board_size, ham_move)
             return reverse
 
     food_val = get_hamiltonian_number(board_size, food_coords)
