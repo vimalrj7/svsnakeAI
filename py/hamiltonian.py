@@ -32,52 +32,34 @@ class hamiltonian:
 
         return [x, y]
 
-    #NOMRAL HAM
-    def get_normal_number(self, coordinate):
-        start, number = [0, 0], 0
-        
-        while start != coordinate:
-            start = self.get_normal_coordinate(start)
-            number += 1
-
-        return number
-    
-    #REVERSE HAM
-    def get_reverse_number(self, coordinate):
-        ham_num = self.get_normal_number(coordinate)
-        
-        if ham_num == 1:
-            return self.board_size**2 - 1
-
-        elif ham_num == 0:
-            return self.board_size**2 - 2
-
-        else:
-            return ham_num - 2
-
-    #GENERAL
-    def number_to_coordinate(self, number):
-        start, coordinate = 0, [0, 0]
-
-        while start != number:
-            start += 1
-            coordinate = self.get_normal_coordinate(coordinate)
-
-        return coordinate
-
     #REVERSE HAM
     def get_reverse_coordinate(self, coordinate):
-        reverse_num = self.get_reverse_number(coordinate)
-        reverse_coordinate = self.number_to_coordinate(reverse_num)
+        x, y = coordinate[0], coordinate[1]
 
-        return reverse_coordinate
+        if x > 0 and x < self.board_size - 1 and y == 0:
+            x += 1
+        
+        else: 
+            if x % 2 == 0:
+                if y == self.board_size - 1:
+                    x -= 1
+                else:
+                    y -= 1
 
-    #WHAT YOU CALL
-    def get_number(self, coordinate):
-        if self.reverse:
-            return self.get_reverse_number(coordinate)
-        else:
-            return self.get_normal_number(coordinate)
+            else:
+                #at top and not in the last column, take a right
+                if y == 1 and x != self.board_size - 1:
+                    x -= 1
+                #at the last column but not in top corner, go up
+                elif x == self.board_size - 1 and y != 0:
+                    y += 1
+                #at the last column in the top corner, go left
+                elif x == self.board_size -1 and y == 0:
+                    x +=1
+                else:
+                    y += 1
+
+        return [x, y]
     
     #WHAT YOU CALL
     def get_coordinate(self, coordinate):
@@ -87,6 +69,16 @@ class hamiltonian:
             return self.get_normal_coordinate(coordinate)
 
     #WHAT YOU CALL
+    def get_number(self, coordinate):
+        start, number = [0, 0], 0
+        
+        while start != coordinate:
+            start = self.get_coordinate(start)
+            number += 1
+
+        return number
+
+    #WHAT YOU CALL
     def get_distance(self, head_coords, item_coords):
         head = self.get_number(head_coords)
         item = self.get_number(item_coords)
@@ -94,3 +86,7 @@ class hamiltonian:
             return item - head
         elif head > item:
             return (self.board_size**2 - (head - item))
+
+
+
+    

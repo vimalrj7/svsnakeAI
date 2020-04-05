@@ -82,4 +82,14 @@ def shortest_path(coordinate, food_coordinate):
             moves[j][0] = moves[i][0]
             
     return moves
+
+    #GENERAL
+    def number_to_coordinate(self, number):
+        start, coordinate = 0, [0, 0]
+
+        while start != number:
+            start += 1
+            coordinate = self.get_coordinate(coordinate)
+
+        return coordinate
 '''

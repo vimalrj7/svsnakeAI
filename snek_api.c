@@ -85,17 +85,21 @@ int is_failure_state(int axis, int direction, GameBoard *gameBoard){
 
 void populate_moogles(GameBoard *gameBoard){
 	if (MOOGLE_FLAG == 0){
-		int r1 = rand() % BOARD_SIZE;
-		int r2 = rand() % BOARD_SIZE;
+		int r1, r2;
+		do{
+			r1 = rand() % BOARD_SIZE;
+			r2 = rand() % BOARD_SIZE;
+		} while (gameBoard->occupancy[r1][r2] == 1);
 		
 		int r3 = rand() % (BOARD_SIZE * 10);
-		if (r3 == 0){
-			gameBoard->cell_value[r1][r2] = MOOGLE_POINT * HARRY_MULTIPLIER;
-			MOOGLE_FLAG = 1;
-		} else if (r3 < BOARD_SIZE){
-			gameBoard->cell_value[r1][r2] = MOOGLE_POINT;
-			MOOGLE_FLAG = 1;
-		}
+		
+			if (r3 == 0){
+				gameBoard->cell_value[r1][r2] = MOOGLE_POINT * HARRY_MULTIPLIER;
+				MOOGLE_FLAG = 1;
+			} else if (r3 < BOARD_SIZE){
+				gameBoard->cell_value[r1][r2] = MOOGLE_POINT;
+				MOOGLE_FLAG = 1;
+			}
 	}
 }
 

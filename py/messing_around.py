@@ -86,10 +86,15 @@ def choose_move(head_coords, tail_coords, food_coords, board_size, board):
     
     distanceto_tail = ham.get_distance(head_coords, tail_coords) - 1
     distanceto_food = ham.get_distance(head_coords, food_coords)
+    distanceto_middle = ham.get_distance(head_coords, [board_size-1, 0])
 
     for move in moves:
         if distanceto_tail == -1:
             return move
+
+        if move == ham_move:
+            continue
+
         move_number = ham.get_number(move)
         print("Move at:", move_number)
         print("Distance to tail:", distanceto_tail)
@@ -99,14 +104,25 @@ def choose_move(head_coords, tail_coords, food_coords, board_size, board):
         if distanceto_move < distanceto_tail and distanceto_move <= distanceto_food:
             print("Taking shortcut!")
             return move
-        elif distanceto_move <= distanceto_tail:
-            print("Switching to reverse ham!")
-            ham.reverse = True
-            return [head_coords[0] + 1, head_coords[1]]
-            
+        elif head_coords[1] != 0 and distanceto_move > distanceto_food and distanceto_food > distanceto_middle:
+            new_food_coords = [board_size - 1, 0]
+            new_shortcuts = short_moves(head_coords, new_food_coords, board)
+            for new_move in new_shortcuts:
+                if distanceto_middle < distanceto_tail:
+                    print("Taking shortcut to middle top!")
+                    return new_move
+
+    if head_coords[1] != 0 and distanceto_food > distanceto_middle:
+        new_food_coords = [board_size - 1, 0]
+        new_shortcuts = short_moves(head_coords, new_food_coords, board)
+        for new_move in new_shortcuts:
+            if distanceto_middle < distanceto_tail:
+                print("Taking shortcut to middle top!")
+                return new_move
     
-    print("Can't take shortcut, going ham!")
-    return ham_move
+            
+    print("No shortcuts present, going ham!")
+    return ham_move 
     
 
     
