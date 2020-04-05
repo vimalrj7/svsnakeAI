@@ -12,7 +12,7 @@ if __name__ == "__main__":
     direction = DIR_INIT
             
     while (play_on):
-        print("while loop start ~~~~~~~~~~~~~~~~~")
+        
         #indexing at 0 dereferences the pointer
         x_head, y_head = board[0].snek[0].head[0].coord[x], \
                            board[0].snek[0].head[0].coord[y]
