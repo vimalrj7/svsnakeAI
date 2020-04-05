@@ -77,24 +77,33 @@ def choose_move(head_coords, tail_coords, food_coords, board_size, board):
     
     if food_coords != [-1, -1]:
         food_val = ham.get_number(food_coords)
+        print("Food at:", food_val)
     else:
         print("No food, going ham!")
         return ham_move
 
     moves = short_moves(head_coords, food_coords, board)
     
-    distanceto_tail = ham.get_distance(head_val, tail_val) - 1
-    distanceto_food = ham.get_distance(head_val, food_val)
+    distanceto_tail = ham.get_distance(head_coords, tail_coords) - 1
+    distanceto_food = ham.get_distance(head_coords, food_coords)
 
     for move in moves:
+        if distanceto_tail == -1:
+            return move
         move_number = ham.get_number(move)
+        print("Move at:", move_number)
         print("Distance to tail:", distanceto_tail)
         print("Distance to food:", distanceto_food)
-        distanceto_move = ham.get_distance(head_val, move_number)
+        distanceto_move = ham.get_distance(head_coords, move)
         print("Distance to move:", distanceto_move)
         if distanceto_move < distanceto_tail and distanceto_move <= distanceto_food:
             print("Taking shortcut!")
             return move
+        elif distanceto_move <= distanceto_tail:
+            print("Switching to reverse ham!")
+            ham.reverse = True
+            return [head_coords[0] + 1, head_coords[1]]
+            
     
     print("Can't take shortcut, going ham!")
     return ham_move

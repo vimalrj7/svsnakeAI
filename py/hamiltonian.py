@@ -67,8 +67,8 @@ class hamiltonian:
 
     #REVERSE HAM
     def get_reverse_coordinate(self, coordinate):
-        reverse = self.get_reverse_number(coordinate)
-        reverse_coordinate = self.number_to_coordinate(reverse)
+        reverse_num = self.get_reverse_number(coordinate)
+        reverse_coordinate = self.number_to_coordinate(reverse_num)
 
         return reverse_coordinate
 
@@ -77,7 +77,7 @@ class hamiltonian:
         if self.reverse:
             return self.get_reverse_number(coordinate)
         else:
-           return self.get_normal_number(coordinate)
+            return self.get_normal_number(coordinate)
     
     #WHAT YOU CALL
     def get_coordinate(self, coordinate):
@@ -87,7 +87,9 @@ class hamiltonian:
             return self.get_normal_coordinate(coordinate)
 
     #WHAT YOU CALL
-    def get_distance(self, head, item):
+    def get_distance(self, head_coords, item_coords):
+        head = self.get_number(head_coords)
+        item = self.get_number(item_coords)
         if head <= item:
             return item - head
         elif head > item:
