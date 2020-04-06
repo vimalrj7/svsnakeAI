@@ -28,8 +28,8 @@ if __name__ == "__main__":
         #gets food
         food = get_food_coordinates(BOARD_SIZE, board[0].cell_value)
 
-        if food != [-1, -1]:
-            print("FOOD FOUND at:", food)
+        #if food != [-1, -1]:
+            #print("FOOD FOUND at:", food)
 
         next_move = choose_move(head, tail, food, BOARD_SIZE, board[0].occupancy)
         print("NEXT MOVE:", next_move)
@@ -53,7 +53,7 @@ if __name__ == "__main__":
 
         play_on = advance_frame(axis, direction, board)
         show_board(board)
-        sleep(0.65)
+        sleep(0.05)
     
     #pass by reference to clean memory  
     end_game(byref(board))
