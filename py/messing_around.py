@@ -1,5 +1,4 @@
 from snek import *
-from math import *
 from hamiltonian import *
 
 def get_food_coordinates(board_size, board):
