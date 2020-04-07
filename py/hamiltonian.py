@@ -2,12 +2,14 @@ class hamiltonian:
     '''
     All the functions required to run a hamiltonian cycle and perform hamiltonian operations.
     '''
+
     def __init__(self, board_size):
         '''
         Need the board_size to initalize the class.
         (int) -> None
         '''
         self.board_size = board_size
+
 
     def get_coordinate(self, coordinate):
         '''
@@ -47,6 +49,7 @@ class hamiltonian:
 
         return [x, y]
 
+
     def get_number(self, coordinate):
         '''
         Gets the hamiltonian number for a coordinate on the board.\n
@@ -64,6 +67,7 @@ class hamiltonian:
 
         #return the resulting number
         return number
+
 
     def get_distance(self, head_coords, item_coords):
         '''
