@@ -239,6 +239,7 @@ void end_game(GameBoard **board){
 	//fprintf(stdout, "\033[0;0H"); 
 	fprintf(stdout, "\n\n\n--!!---GAME OVER---!!--\n\nYour score: %d\n\n\n\n", SCORE);
 	fflush(stdout);
+
 	// need to free all allocated memory
 	// first snek
 	SnekBlock **snekHead = &((*board)->snek->head);

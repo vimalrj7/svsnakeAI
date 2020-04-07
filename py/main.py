@@ -38,11 +38,10 @@ if __name__ == "__main__":
         play_on = advance_frame(axis, direction, board)
         
         #if board[0].snek[0].length > 40 and board[0].snek[0].length < 46:
-        
         #displays the board
         show_board(board)
         #creates delay
-        sleep(0.1)
+        sleep(0.01)
         
         #checks if the snake won, notifies player if won and ends the game
         if board[0].snek[0].length == BOARD_SIZE**2 - 1:
@@ -53,5 +52,3 @@ if __name__ == "__main__":
     
     #pass by reference to clean memory  
     end_game(byref(board))
-    
-
