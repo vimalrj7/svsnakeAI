@@ -126,3 +126,82 @@ def shortest_path(coordinate, food_coordinate):
 '''
 
 '''
+
+
+
+from snek import *
+from time import sleep
+from messing_around import *
+
+def main(vimals_constant):
+    #ptr to board
+    board = init_board()
+    
+    play_on = 1
+    #show_board(board)
+    axis = AXIS_INIT
+    direction = DIR_INIT
+            
+    while (play_on):
+        
+        #indexing at 0 dereferences the pointer
+        x_head, y_head = board[0].snek[0].head[0].coord[x], \
+                           board[0].snek[0].head[0].coord[y]
+
+        x_tail, y_tail = board[0].snek[0].tail[0].coord[x], \
+                           board[0].snek[0].tail[0].coord[y]
+
+        head = [x_head, y_head]
+        tail = [x_tail, y_tail]
+        
+        #print("====================================================")
+
+        #gets food
+        food = get_food_coordinates(BOARD_SIZE, board[0].cell_value)
+
+        #if food != [-1, -1]:
+            #print("FOOD FOUND at:", food)
+
+        next_move = choose_move(head, tail, food, BOARD_SIZE, board[0], CYCLE_ALLOWANCE, vimals_constant)
+        #print("NEXT MOVE:", next_move)
+        axis, direction = convert_to_move(head, next_move)
+        #print("====================================================")
+
+        play_on = advance_frame(axis, direction, board)
+
+        if board[0].snek[0].length == BOARD_SIZE**2 - 1:
+            play_on = 0
+
+        #show_board(board)
+        #sleep(0.3)
+    
+    #pass by reference to clean memory
+    score = get_score()
+    length = (board[0].snek[0].length)
+    if length == (BOARD_SIZE*BOARD_SIZE) - 1:
+        win = "YES"
+        length += 1
+    else:
+        win = "NO"
+
+    print(win)
+    
+    end_game(byref(board))
+    return [score, length, win]
+
+
+def test():
+    with open("data/data1.csv", 'w') as f:
+        f.write("Sample:,Score:,Length:,Win:,Vimal's Consant:\n")
+        for i in range(-20, 21, 4):
+            for j in range(1,31):
+                result = main(i)
+                f.write("{}, {}, {}, {}, {}\n".format(j, result[0], result[1], result[2], i))
+
+print(main(-20))
+print(main(-20))
+    
+
+    
+    
+

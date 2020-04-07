@@ -211,9 +211,9 @@ void show_board(GameBoard* gameBoard) {
 
 	fprintf(stdout, "\n\n");
 	
-	if (MOOGLE_FLAG == 1){
-		fprintf(stdout, "!..ALERT, MOOGLE IN VICINITY..!\n\n");
-	}
+	//if (MOOGLE_FLAG == 1){
+		//fprintf(stdout, "!..ALERT, MOOGLE IN VICINITY..!\n\n");
+	//}
 	fprintf(stdout, "SCORE: %d\n", SCORE);
 	fprintf(stdout, "YOU HAVE EATEN %d MOOGLES\n\n", MOOGLES_EATEN);
 
@@ -249,6 +249,7 @@ void end_game(GameBoard **board){
 		prev->next = NULL;
 		free(curr);
 	}
+
 	free(*snekHead);
 	free((*board)->snek);
 	free(*board);

@@ -2,15 +2,14 @@ from snek import *
 from time import sleep
 from messing_around import *
 
-if __name__ == "__main__":
+def main():
     #ptr to board
     board = init_board()
     
     play_on = 1
-    show_board(board)
+    #show_board(board)
     axis = AXIS_INIT
     direction = DIR_INIT
-    current_frame = 0
             
     while (play_on):
         
@@ -29,12 +28,10 @@ if __name__ == "__main__":
         #gets food
         food = get_food_coordinates(BOARD_SIZE, board[0].cell_value)
 
-        if food != [-1, -1]:
-            current_frame += 1
-        else:
-            current_frame = 0
+        #if food != [-1, -1]:
+            #print("FOOD FOUND at:", food)
 
-        next_move = choose_move(head, tail, food, BOARD_SIZE, board[0], CYCLE_ALLOWANCE, current_frame)
+        next_move = choose_move(head, tail, food, BOARD_SIZE, board[0], CYCLE_ALLOWANCE)
         #print("NEXT MOVE:", next_move)
         axis, direction = convert_to_move(head, next_move)
         #print("====================================================")
@@ -55,11 +52,35 @@ if __name__ == "__main__":
         '''
 
         play_on = advance_frame(axis, direction, board)
-        show_board(board)
-        sleep(0.01)
 
         if board[0].snek[0].length == BOARD_SIZE**2 - 1:
             play_on = 0
+
+        #show_board(board)
+        #sleep(0.3)
     
-    #pass by reference to clean memory  
+    #pass by reference to clean memory
+    score = get_score()
+    length = (board[0].snek[0].length)
+    if length == (BOARD_SIZE*BOARD_SIZE) - 1:
+        win = 1
+        print("WIN!")
+        length += 1
+
+    else:
+        win = 0 
+    
     end_game(byref(board))
+    
+    with open("data/data1.csv", 'a') as f:
+        f.write("{}, {}, {}\n".format(score, length, win))
+    
+    return "{}, {}, {}\n".format(score, length, win)
+    
+
+print(main())
+print(main())
+print(main())
+    
+    
+

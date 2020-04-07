@@ -14,6 +14,7 @@ and recompile.
 
 from ctypes import *
 BOARD_SIZE = 10
+CYCLE_ALLOWANCE = 1.5
 
 # do not modify --------------------
 x = 0
