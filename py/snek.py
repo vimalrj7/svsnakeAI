@@ -82,6 +82,7 @@ show_board = wrap_func(snek_lib, 'show_board', None, [POINTER(GameBoard)])
 advance_frame = wrap_func(snek_lib, 'advance_frame', c_int, [c_int, c_int, POINTER(GameBoard)])
 end_game = wrap_func(snek_lib, 'end_game', None, [POINTER(POINTER(GameBoard))])
 get_score = wrap_func(snek_lib, 'get_score', c_int, [])
+get_curr_frame = wrap_func(snek_lib, 'get_curr_frame', c_int, [])
 
 
 

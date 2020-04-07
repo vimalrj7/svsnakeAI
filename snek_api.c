@@ -230,6 +230,10 @@ int get_score() {
 	return SCORE;
 }
 
+int get_curr_frame() {
+	return CURR_FRAME;
+}
+
 void end_game(GameBoard **board){
 	//fprintf(stdout, "\033[2J");
 	//fprintf(stdout, "\033[0;0H"); 
