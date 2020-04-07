@@ -131,7 +131,7 @@ def shortest_path(coordinate, food_coordinate):
 
 from snek import *
 from time import sleep
-from messing_around import *
+from algorithm import *
 
 def main(vimals_constant):
     #ptr to board
@@ -200,8 +200,18 @@ def test():
 
 print(main(-20))
 print(main(-20))
-    
+''' 
 
     
     
 
+'''
+def print_details(head_coords, tail_coords, food_coords, ham):
+    head_val = ham.get_number(head_coords)
+    tail_val = ham.get_number(tail_coords)
+    print("Head at:", head_val)
+    print("Tail at:", tail_val)
+    if food_coords != [-1, -1]:
+        food_val = ham.get_number(food_coords)
+        print("Food at:", food_val)
+'''

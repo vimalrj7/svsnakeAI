@@ -13,8 +13,8 @@ and recompile.
 '''
 
 from ctypes import *
-BOARD_SIZE = 10
-CYCLE_ALLOWANCE = 1.5
+BOARD_SIZE = 14
+CYCLE_ALLOWANCE = 1.7
 
 # do not modify --------------------
 x = 0

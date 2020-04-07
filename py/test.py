@@ -1,6 +1,6 @@
 from snek import *
 from time import sleep
-from messing_around import *
+from algorithm import *
 
 def main():
     #ptr to board
