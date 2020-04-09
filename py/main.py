@@ -37,7 +37,6 @@ if __name__ == "__main__":
         #moves the game forward one frame
         play_on = advance_frame(axis, direction, board)
         
-        #if board[0].snek[0].length > 40 and board[0].snek[0].length < 46:
         #displays the board
         show_board(board)
         #creates delay
