@@ -40,7 +40,7 @@ if __name__ == "__main__":
         #displays the board
         show_board(board)
         #creates delay
-        sleep(0.01)
+        sleep(0.1)
         
         #checks if the snake won, notifies player if won and ends the game
         if board[0].snek[0].length == BOARD_SIZE**2 - 1:
